@@ -8,7 +8,7 @@ import LoginPage from '../pages/LoginPage.vue';
 const routes = [
     {
         name: 'Home',
-        path: '/',
+        path: '/student-onboarding-app/',
         component: HomePage
     },
     {
