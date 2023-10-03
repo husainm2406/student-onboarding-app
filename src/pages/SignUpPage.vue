@@ -42,7 +42,7 @@ export default {
                 let response = await axios.post(url, this.form);
                 if(response.status==201){
                     localStorage.setItem('admin', JSON.stringify(response.data));
-                    this.$router.push('/');
+                    this.$router.push('/student-onboarding-app/');
                     return;
                 }
                 return;
