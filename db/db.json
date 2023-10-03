@@ -1,0 +1,32 @@
+{
+  "international_docs": {
+    "Domicile": true,
+    "Birth certificate": true,
+    "Marksheets": true,
+    "Police clearance": true,
+    "Passport": true,
+    "Declaration": true
+  },
+  "domestic_docs": {
+    "Domicile": true,
+    "Birth certificate": true,
+    "Marksheets": true,
+    "Police clearance": false,
+    "Passport": false,
+    "Declaration": true
+  },
+  "admins": [
+    {
+      "name": "Husain Modi",
+      "email": "test@gmail.com",
+      "password": "test123",
+      "id": 1
+    },
+    {
+      "name": "Gaurav",
+      "email": "admin@gmail.com",
+      "password": "test123",
+      "id": 2
+    }
+  ]
+}
