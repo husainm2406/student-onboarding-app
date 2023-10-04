@@ -27,6 +27,12 @@
       "email": "admin@gmail.com",
       "password": "test123",
       "id": 2
+    },
+    {
+      "name": "Gaurav",
+      "email": "test1234@gmail.com",
+      "password": "test123",
+      "id": 3
     }
   ]
 }

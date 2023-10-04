@@ -5,10 +5,12 @@
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input placeholder="Enter Email" type="email" class="form-control" id="email" v-model="form.email">
+            <span style="color: red;" v-if="error.indexOf('email')>-1">Email id required.</span>
         </div>
         <div class="mb-3">
             <label for="pass" class="form-label">Password</label>
             <input placeholder="Enter Password" type="password" autocomplete="current-password" class="form-control" id="pass" v-model="form.password">
+            <span style="color: red;" v-if="error.indexOf('password')>-1">Password is required.</span>
         </div>
         <div class="mt-2 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -28,10 +30,21 @@ export default {
                 email: '',
                 password: ""
             },
+            error: [],
         }
     },
     methods: {
+        validateFields() {
+            this.error = [];
+            for (let item in this.form) {
+                if (this.form[item] === null || this.form[item].length === 0) {
+                    this.error.push(item);
+                }
+            }
+        },
         async submit() {
+            this.validateFields();
+            if(this.error.length > 0)return;
             try {
                 const url = `http://localhost:3000/admins?email=${this.form.email}&password=${this.form.password}`;
                 let response = await axios.get(url);
