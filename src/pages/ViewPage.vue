@@ -1,7 +1,11 @@
 <template>
-    <HeaderComp :setOption="setOption"/>
-    <ViewStudent v-if="option==='operateStudent'"/>
-    <StudentList v-if="option==='listStudent'"/>
+<HeaderComp :setOption="setOption" />
+<ViewStudent v-if="option==='operateStudent'" />
+<StudentList v-if="option==='listStudent'" />
+<div style="display: flex; justify-content: center;">
+    <button class="btn btn-dark mb-1" style="justify-self: center;" @click="this.$router.push('/student-onboarding-app/')">Go to Home
+    </button>
+</div>
 </template>
 
 <script>
@@ -16,13 +20,13 @@ export default {
         ViewStudent,
         StudentList
     },
-    data(){
+    data() {
         return {
             option: 'operateStudent',
         }
     },
     methods: {
-        setOption(type){
+        setOption(type) {
             this.option = type;
         }
     },

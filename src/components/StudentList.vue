@@ -46,6 +46,7 @@
         </div>
     </div>
 </div>
+<div v-else><h3 style="text-align: center;">No data available.</h3></div>
 </template>
 
 <script>

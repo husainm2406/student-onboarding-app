@@ -1,6 +1,6 @@
 <template>
 <h5 style="text-align: center;">Onboarding Form(View)</h5><br />
-<div class="d-flex justify-content-center mt-2 mb-3">
+<div class="d-flex justify-content-center mt-2 mb-3" v-if="form!==null">
     <form @submit.prevent="saveData()">
         <!-- name -->
         <div class="mb-2 row">
@@ -66,6 +66,9 @@
         </div>
     </form>
 </div>
+<div v-else>
+    <h3 style="text-align: center;">No record found.</h3>
+</div>
 </template>
 
     
@@ -77,7 +80,7 @@ export default {
     name: "ViewStudent",
     data() {
         return {
-            form: {},
+            form: null,
         };
     },
     mounted() {
@@ -85,7 +88,9 @@ export default {
         let studentArr = localStorage.getItem('studentArr');
         studentArr = JSON.parse(studentArr);
         let tempStudent = studentArr.filter((student) => student.studentId === id);
-        this.form = tempStudent[0];
+        if (tempStudent.length>0) {
+            this.form = tempStudent[0];
+        }
     },
 }
 </script>

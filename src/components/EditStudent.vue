@@ -1,6 +1,6 @@
 <template>
 <h5 style="text-align: center;">Onboarding Form(Edit)</h5><br />
-<div class="d-flex justify-content-center mt-2 mb-3">
+<div class="d-flex justify-content-center mt-2 mb-3" v-if="form!==null">
     <form @submit.prevent="saveData()">
         <!-- name -->
         <div class="mb-2 row">
@@ -74,9 +74,11 @@
         </div>
     </form>
 </div>
+<div v-else>
+    <h3 style="text-align: center;">No record found.</h3>
+</div>
 </template>
 
-    
 <script>
 import {
     useRoute
@@ -86,7 +88,7 @@ export default {
     name: "EditStudent",
     data() {
         return {
-            form: {},
+            form: null,
             reqDocuments: null,
             error: [],
             reqDocumentsFlag: false,
@@ -97,8 +99,11 @@ export default {
         let studentArr = localStorage.getItem('studentArr');
         studentArr = JSON.parse(studentArr);
         let tempStudent = studentArr.filter((student) => student.studentId === id);
-        this.form = tempStudent[0];
-        this.getRequiredDocs();
+
+        if (tempStudent.length>0) {
+            this.form = tempStudent[0];
+            this.getRequiredDocs();
+        }
     },
     methods: {
         async getRequiredDocs() {
@@ -132,10 +137,10 @@ export default {
             if (this.error.length > 0) {
                 return;
             }
-            if(this.form.studentCategory==='International' && this.form.submittedDocuments.length<6){
+            if (this.form.studentCategory === 'International' && this.form.submittedDocuments.length < 6) {
                 return;
             }
-            if(this.form.studentCategory==='Domestic' && this.form.submittedDocuments.length<4){
+            if (this.form.studentCategory === 'Domestic' && this.form.submittedDocuments.length < 4) {
                 return;
             }
             const data = {
@@ -152,12 +157,11 @@ export default {
             let finalArr = studentArr.filter((student) => student.studentId !== this.form.studentId);
             finalArr.push(data);
             localStorage.setItem('studentArr', JSON.stringify(finalArr));
-            this.clearData();
+            alert('student updated successfully')
         },
     },
 }
 </script>
 
-    
 <style scoped>
     </style>
